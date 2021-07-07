@@ -1,0 +1,20 @@
+@startuml
+
+title states
+
+state c1 <<choice>>
+
+[*] --> INIT
+
+INIT --> s1: System requests select menu option
+s1 --> s2: User introduces menu option
+s2 --> c1
+c1 --> IN_GAME: [play]
+c1 --> EXIT: [exit]
+c1 --> s3: [load]
+s3 --> s4: System requests file name
+s4 --> IN_GAME: user introduces file name
+IN_GAME --> [*]
+EXIT --> [*]
+
+@enduml

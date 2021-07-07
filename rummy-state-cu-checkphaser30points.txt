@@ -1,0 +1,19 @@
+@startuml
+
+title CHECKPHASE30POINTS Use case
+
+state c1 <<choice>>
+state c2 <<choice>>
+
+[*] --> CHECKPHASE30POINTS
+CHECKPHASE30POINTS --> s1: System checks if the player has already played his first thirty points
+s1 --> c1
+c1 --> s2: [no]
+c1 --> [*]: [can do tiles down]
+c1 --> [*]: [can do table movements]
+s2 --> c2: System checks if the player has at least thirty points
+c2 --> [*]: [no]
+c2 --> [*]: [can do tiles down]
+
+
+@enduml

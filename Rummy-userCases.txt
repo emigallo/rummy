@@ -1,0 +1,22 @@
+@startuml
+
+title Use cases 
+
+:User: --> (Play)
+:User:  --> (Load game)
+:User: --> (Exit)
+(Load game) ..> (Play): include
+:Play: ..> (Resume): include
+:Play: ..> (Undo): include
+:Play: ..> (Redo): include
+:Play: ..> (Table Movement): include
+:Play: ..> (Tiles down): include
+:Play: ..> (Finish turn): include
+:Play: ..> (Extract tile): include
+:Play: ..> (Cancel play): include
+:Play: ..> (Save): include
+
+:Table Movement: ..> (CheckPhase30points): include
+:Tiles down: ..> (CheckPhase30points): include
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+
+title SAY RUMMY (Change turn) Use case
+
+state c1 <<choice>>
+
+[*] --> SAY_RUMMY
+
+SAY_RUMMY --> s1: System checks for well-formed groups
+
+s1 --> c1
+c1 --> s3: [well-formed]
+s3 --> s4: System change turn
+s4 --> [*]
+c1 --> s2
+s2 --> [*]: System show error message
+
+@enduml

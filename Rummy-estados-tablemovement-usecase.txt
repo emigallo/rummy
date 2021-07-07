@@ -1,0 +1,31 @@
+@startuml
+
+title TABLE_MOVEMENTS Use case
+
+state c1 <<choice>>
+state c <<choice>>
+state c2 <<choice>>
+
+[*] --> TABLE_MOVEMENTS
+
+TABLE_MOVEMENTS --> s1: System requests table tiles movements on board
+
+s1 --> s2: current turn player introduces tiles movements on table
+s2 --> c1
+c1 --> CHECKPHASE30POINTS
+CHECKPHASE30POINTS --> c
+c --> s3: [no]
+c --> s4: [can do table movements]
+s4 --> s5: System checks if movements are possible
+s5 --> c2
+c2 --> s7: [yes]
+c2 --> s8: [no]
+s7 --> s9: System makes movements
+s8 --> s10: System show error message
+s9 --> [*]
+s10 --> [*]
+s3 --> [*]: System show message
+c1 --> s6: [Tiles error]
+s6 --> [*]: System show error message
+
+@enduml
