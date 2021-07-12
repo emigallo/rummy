@@ -45,10 +45,12 @@ Menu
    
 Option: 1
 Tiles: 3R 3Y 3G 
+
 ¡¡ Attention, the first combination should add at least 30 points !!
 
 Option: 1
 Tiles: 3G 4G 5G 6G
+
 ¡¡ Attention, the first combination should add at least 30 points !!
 
 Option: 3
