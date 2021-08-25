@@ -5,31 +5,73 @@ namespace rummy_v2.Models
 {
     public class Player
     {
-        Table table;
-        List<Tile> _rack;
+
+        Table _table;
+        Rack _rack;
 
         public Player(Table table)
         {
-            this.table = table;
-            this._rack = new List<Tile>();
-        }               
+            this._table = table;
+            this._rack = new Rack();
+        }
 
         public void PlayTurn()
         {
-            throw new NotImplementedException();
+            Movement movement = null;
+            this.TileAddedToGroup = false;
+            do
+            {
+                movement = this.ReadMovement();
+                switch (movement.Action)
+                {
+                    case Movement.ActionPlayer.ADD_FROM_RACK: AddTileToGroup(movement); break;
+                    case Movement.ActionPlayer.MOVE_IN_TABLE: this._table.MoveTilesInTable(movement); break;
+                    case Movement.ActionPlayer.FINISH_TURN : this._table.IsValid(); break;
+                }
+
+            } while (this.IsWinner() || movement.Action != Movement.ActionPlayer.FINISH_TURN);
         }
 
-        public bool TileAddedToGroup()
+        private void AddTileToGroup(Movement movement)
         {
-            throw new NotImplementedException();
+            List<Tile> tiles = null;
+            if (this._rack.ValidateMovemnt(movement.SelectedTiles))
+            {
+                tiles = this._rack.GetTiles(movement.SelectedTiles);
+                this._table.AddTiles(tiles, movement.Destination);
+                this._rack.ExtractTile(tiles);
+                this.TileAddedToGroup = true;
+            }
+            else
+            {
+                this.MostrarError("");
+            }
         }
 
-        public void ExtractTile(object p)
+        private void MostrarError(string v)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(v);
+        }
+
+        private void Show()
+        {
+            Console.WriteLine("----");
+            this._rack.Show();
+        }
+
+        public bool TileAddedToGroup { get; private set; }
+
+        public void ExtractTile(Tile p)
+        {
+            this._rack.Add(p);
         }
 
         public bool IsWinner()
+        {
+            return this._rack.Empty();
+        }
+
+        private Movement ReadMovement()
         {
             throw new NotImplementedException();
         }

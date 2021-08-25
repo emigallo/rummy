@@ -14,10 +14,10 @@ namespace rummy_v2
         Pounch _pounch;
         public Rummy()
         {
+            this._pounch = new Pounch();
             this._players = InitPlayers();
             this._turn = new Turn(_players);
-            this._table = new Table();
-            this._pounch = new Pounch();
+            this._table = new Table();            
         }
 
         private List<Player> InitPlayers()
@@ -40,7 +40,7 @@ namespace rummy_v2
             do{
                 player = this._turn.Next();
                 player.PlayTurn();
-                if(!player.TileAddedToGroup()){
+                if(!player.TileAddedToGroup){
                     player.ExtractTile(_pounch.TakeTile());
                 }
             }while(!player.IsWinner());            
