@@ -6,7 +6,7 @@ namespace rummy_v2.Models
     {
          public abstract bool HasDistanceOne(TileBase tile);
          public abstract bool IsSameValueDiffColor(TileBase tile);
-        public abstract bool Accept(TileGroup tileGroup, TileBase tileBase);
-        
+         public abstract bool HasDistanceOneAccept(IVisitorTile visitor);
+         public abstract bool IsSameValueDiffColorAccept(IVisitorTile visitor);
     }
 }

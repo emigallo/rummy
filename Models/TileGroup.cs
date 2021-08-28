@@ -39,37 +39,19 @@ namespace rummy_v2.Models
                 i++;
             }
             return this.GetTile(i).IsSameValueDiffColor(this.GetTile(i+1));
-
         }        
 
         public bool IsRun()
         {
-            /*if (!this.IsGroup() || this._tiles.Count > MAX_SIZE_RUN)
+            if (!this.IsGroup() || this._tiles.Count > MAX_SIZE_RUN)
                 return false;
             this.Sort();
             int i = 0;
             while(i<this._tiles.Count -1  && this.GetTile(i).HasDistanceOne(this.GetTile(i+1))){
                 i++;
             }
-            return this.GetTile(i).HasDistanceOne(this.GetTile(i+1));*/
-            if (!this.IsGroup() || this._tiles.Count > MAX_SIZE_RUN)
-                return false;
-            this.Sort();
-            int i = 0;
-            while(i<this._tiles.Count -1  && this.GetTile(i).Accept(this, this.GetTile(i+1))){
-                i++;
-            }
-            return this.GetTile(i).Accept(this, this.GetTile(i+1));
+            return this.GetTile(i).HasDistanceOne(this.GetTile(i+1));
         }
-
-        public bool Visit(Tile tile, TileBase tilebase){
-            return tile.HasDistanceOne(tilebase);
-        }
-
-        public bool Visit(WildCardTile tile, TileBase tileBase){
-            return tile.HasDistanceOne(tileBase);
-        }
-        
 
         private TileBase GetTile(int i)
         {
