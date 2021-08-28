@@ -9,7 +9,7 @@ namespace rummy_v2.Models
         {
         }
 
-        internal void Add(Tile p)
+        internal void Add(TileBase p)
         {
             throw new NotImplementedException();
         }
@@ -19,7 +19,7 @@ namespace rummy_v2.Models
             throw new NotImplementedException();
         }
 
-        internal void ExtractTile(List<Tile> tiles)
+        internal void ExtractTile(List<TileBase> tiles)
         {
             throw new NotImplementedException();
         }
@@ -29,7 +29,7 @@ namespace rummy_v2.Models
             throw new NotImplementedException();
         }
 
-        internal List<Tile> GetTiles(string selectedTiles)
+        internal List<TileBase> GetTiles(string selectedTiles)
         {
             throw new NotImplementedException();
         }

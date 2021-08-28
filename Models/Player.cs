@@ -34,7 +34,7 @@ namespace rummy_v2.Models
 
         private void AddTileToGroup(Movement movement)
         {
-            List<Tile> tiles = null;
+            List<TileBase> tiles = null;
             if (this._rack.ValidateMovemnt(movement.SelectedTiles))
             {
                 tiles = this._rack.GetTiles(movement.SelectedTiles);
@@ -61,7 +61,7 @@ namespace rummy_v2.Models
 
         public bool TileAddedToGroup { get; private set; }
 
-        public void ExtractTile(Tile p)
+        public void ExtractTile(TileBase p)
         {
             this._rack.Add(p);
         }

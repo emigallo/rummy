@@ -12,7 +12,7 @@ namespace rummy_v2.Models
             _tileGroups = new List<TileGroup>();
         }
 
-        public void AddTiles(List<Tile> tiles, int destination)
+        public void AddTiles(List<TileBase> tiles, int destination)
         {
             if (destination != NEW_GROUP)
             {
@@ -39,7 +39,7 @@ namespace rummy_v2.Models
         public void MoveTilesInTable(Movement movement)
         {
             TileGroup tileGroup = this._tileGroups[movement.Origin];
-            List<Tile> tiles = tileGroup.ExtractTile(movement.SelectedTiles);
+            List<TileBase> tiles = tileGroup.ExtractTile(movement.SelectedTiles.Split(" "));
             this.AddTiles(tiles, movement.Destination);
             if (tileGroup.IsEmpty())
             {

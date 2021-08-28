@@ -4,7 +4,7 @@ namespace rummy_v2.Models
 {
     public class Pounch
     {
-        internal Tile TakeTile()
+        internal TileBase TakeTile()
         {
             throw new NotImplementedException();
         }
