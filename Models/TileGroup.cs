@@ -32,25 +32,27 @@ namespace rummy_v2.Models
         {
             if (!this.IsGroup() || this._tiles.Count > MAX_SIZE_SERIE)
                 return false;
-            List<string> colors = new List<string>();
+            /*List<string> colors = new List<string>();
             int i = 0;
-            while (i < this._tiles.Count - 1 && this.GetTile(i).IsSameValueDiffColor(this.GetTile(i+1)))
+            while (i < this._tiles.Count - 1 && this._tiles[i].HasSameValue(this._tiles[i+1]))
             {
                 i++;
             }
-            return this.GetTile(i).IsSameValueDiffColor(this.GetTile(i+1));
-        }        
+            return CheckSameValueDiffColor(i);*/
+            
+        }
 
         public bool IsRun()
         {
             if (!this.IsGroup() || this._tiles.Count > MAX_SIZE_RUN)
                 return false;
-            this.Sort();
+
             int i = 0;
-            while(i<this._tiles.Count -1  && this.GetTile(i).HasDistanceOne(this.GetTile(i+1))){
+            while (i < this._tiles.Count - 2 && this._tiles[i].HasDistanceOneAndSameColor(this._tiles[i+1]))
+            {
                 i++;
             }
-            return this.GetTile(i).HasDistanceOne(this.GetTile(i+1));
+            return this._tiles[i].HasDistanceOneAndSameColor(this._tiles[i+1]);
         }
 
         private TileBase GetTile(int i)

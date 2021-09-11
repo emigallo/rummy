@@ -2,7 +2,7 @@ using System;
 
 namespace rummy_v2.Models
 {
-    public class Tile : TileBase, IVisitorTile
+    public class Tile : TileBase
     {
         int _value;
         string _color;
@@ -12,45 +12,20 @@ namespace rummy_v2.Models
             this._value = value;
             this._color = color;
         }
-
+        
         public override bool HasDistanceOne(TileBase tile)
         {
-            return tile.HasDistanceOneAccept(this);
-        }
-
-        public override bool HasDistanceOneAccept(IVisitorTile visitor)
-        {
-            return visitor.HasDistanceOneVisit(this);
-        }
-
-        public bool HasDistanceOneVisit(WildCardTile tile)
-        {
-            return true;
-        }
-
-        public bool HasDistanceOneVisit(Tile tile)
-        {
-            return this._value +1 == tile._value;
-        }
+            return CheckColor(tile) && this._value + 1 == ((Tile)tile)._value;
+        }       
 
         public override bool IsSameValueDiffColor(TileBase tile)
         {
-            return tile.IsSameValueDiffColorAccept(this);
+            return this._value == ((Tile) tile)._value && !CheckColor(tile);
         }
 
-        public bool IsSameValueDiffColor(WildCardTile tile)
+        private bool CheckColor(TileBase tile)
         {
-            return true;
-        }
-
-        public bool IsSameValueDiffColor(Tile tile)
-        {
-            return tile._color!=this._color && tile._value == this._value;
-        }
-
-        public override bool IsSameValueDiffColorAccept(IVisitorTile visitor)
-        {
-            return visitor.IsSameValueDiffColor(this);
+            return this._color == ((Tile)tile)._color;
         }
     }
 }

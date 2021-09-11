@@ -4,9 +4,21 @@ namespace rummy_v2.Models
 {
     public abstract class TileBase
     {
-         public abstract bool HasDistanceOne(TileBase tile);
-         public abstract bool IsSameValueDiffColor(TileBase tile);
-         public abstract bool HasDistanceOneAccept(IVisitorTile visitor);
-         public abstract bool IsSameValueDiffColorAccept(IVisitorTile visitor);
+
+        private int _value;
+        private int _color;
+
+        protected abstract bool IsEqualValue(int value);
+        protected abstract bool IsEqualColor(TileBase tile);
+
+        public bool HasSameColor(TileBase tile)
+        {
+            return tile.IsEqualColor(this);
+        }
+
+        public bool HasDistanceOne(TileBase tile)
+        {
+            return tile.IsEqualValue(this._value + 1);
+        }
     }
 }
